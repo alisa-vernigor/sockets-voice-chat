@@ -8,7 +8,7 @@ import events
 class Server:
     def __init__(self):
         logging.basicConfig(level=logging.ERROR)
-        self.ip = socket.gethostbyname(socket.gethostname())
+        self.ip = "localhost"#socket.gethostbyname(socket.gethostname())
 
         # nicknames support
         self.nicknames = set()
@@ -23,13 +23,13 @@ class Server:
 
         while 1:
             try:
-                self.port = int(input('Enter port number to run on --> '))
+                self.port = 80#int(input('Enter port number to run on --> '))
 
                 self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.s.bind((self.ip, self.port))
 
                 break
-            except:
+            except Exception as e:
                 print("Couldn't bind to that port")
 
         self.connections = []
